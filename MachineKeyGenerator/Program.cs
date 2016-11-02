@@ -39,16 +39,16 @@ namespace MachineKeyGenerator
             }
             
         }
-        public static string CreateMachineKey(int characterLength)
+        private static string CreateMachineKey(int characterLength)
         {
 
-            byte[] byteArray = new byte[characterLength / 2];
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            var byteArray = new byte[characterLength / 2];
+            var rng = new RNGCryptoServiceProvider();
             rng.GetBytes(byteArray);
-            StringBuilder sb = new StringBuilder(characterLength);
-            for (int i = 0; i < byteArray.Length; i++)
+            var sb = new StringBuilder(characterLength);
+            foreach (var t in byteArray)
             {
-                sb.Append(string.Format("{0:X2}", byteArray[i]));
+                sb.Append($"{t}");
             }
             Debug.WriteLine(sb);
             return sb.ToString();
