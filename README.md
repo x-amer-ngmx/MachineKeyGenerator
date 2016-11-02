@@ -1,0 +1,2 @@
+# MachineKeyGenerator
+Генератор ключей машины
