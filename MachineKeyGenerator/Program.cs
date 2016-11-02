@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net.Mime;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -26,10 +27,17 @@ namespace MachineKeyGenerator
 "    HMACSHA384 requires a 384-bit key (96 hexadecimal characters).\n"+
 "    HMACSHA512 requires a 512-bit key (128 hexadecimal characters).\n" +
 "*/\n");
-           var chare = int.Parse(Console.ReadLine());
 
-            Console.WriteLine(CreateMachineKey(chare));
-            Console.Read();
+            var chare = 1;
+
+            while (chare > 0)
+            {
+                var res = int.TryParse(Console.ReadLine(), out chare);
+                if(!res) break;
+                Console.WriteLine(CreateMachineKey(chare));
+                Console.Read();
+            }
+            
         }
         public static string CreateMachineKey(int characterLength)
         {
